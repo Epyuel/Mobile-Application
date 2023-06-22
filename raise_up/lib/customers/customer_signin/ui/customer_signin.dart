@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pixel_perfect/pixel_perfect.dart';
 
+import '../../../landing/app_route_customers_constatnts.dart';
 import '../bloc/customer_signin_bloc.dart';
 
 
@@ -36,9 +37,7 @@ class _TechnicianSigninPageState extends State<CustomerSignin> {
       ],
       child: Scaffold(
           backgroundColor: Color(0xE8ECDCFD),
-          body: PixelPerfect(
-            // assetPath: 'assets/images/pixel-technician-login.jpg',
-            child: CurlyBackgroundPage(
+          body: CurlyBackgroundPage(
               backgroundImage: Container(
                 child: Column(
                   children: [
@@ -123,7 +122,7 @@ class _TechnicianSigninPageState extends State<CustomerSignin> {
 
 
                             GoRouter.of(context).pushNamed(
-                              CustomerAppRouteConstant.customerTechnicianList,
+                              LandingAppRouteConstant.customerTechnicianList,
                             );
                           }
                           else if (state is CustomerSigninFailedActionState) {
@@ -288,7 +287,7 @@ class _TechnicianSigninPageState extends State<CustomerSignin> {
                                       TextButton(
                                         onPressed: () {
                                           GoRouter.of(context).pushNamed(
-                                            CustomerAppRouteConstant.customerSignUp,
+                                            LandingAppRouteConstant.customerSignUp,
                                           );
                                         },
                                         child: Text(
@@ -316,7 +315,7 @@ class _TechnicianSigninPageState extends State<CustomerSignin> {
                 ),
               ),
             ),
-          ),
+        
         ),
     );
   }

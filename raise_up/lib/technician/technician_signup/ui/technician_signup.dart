@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:raise_up/technician/technician_signup/bloc/technician_signup_bloc.dart';
 import 'package:raise_up/technician/app_route_constatnts.dart';
 
+import '../../../landing/app_route_customers_constatnts.dart';
+
 class TechnicianSignup extends StatefulWidget {
   @override
   _TechnicianSignupState createState() => _TechnicianSignupState();
@@ -103,7 +105,7 @@ class _TechnicianSignupState extends State<TechnicianSignup> {
                             ),
                           );
                           GoRouter.of(context).pushNamed(
-                            TechnicianAppRouteConstant
+                            LandingAppRouteConstant
                                 .technicianAccoutInformation,
                           );
                         } else if (state is TechnicianSignUpfailedActionState) {
@@ -356,7 +358,7 @@ class _TechnicianSignupState extends State<TechnicianSignup> {
                                         technicianSignupBloc.add(
                                             TechnicianSignupLogInButtonClickedEvent());
                                         GoRouter.of(context).pushNamed(
-                                          TechnicianAppRouteConstant.technicianSignIn,
+                                          LandingAppRouteConstant.technicianSignIn,
                                         );
                                       },
                                       child: Text(

@@ -8,6 +8,7 @@ import 'package:raise_up/customers/customer_signup/bloc/customer_signup_bloc.dar
 
 // import 'package:raise_up/technician/technician_signup/bloc/technician_signup_bloc.dart';
 
+import '../../../landing/app_route_customers_constatnts.dart';
 import '../bloc/customer_signup_bloc.dart';
 import 'package:raise_up/customers/app_route_customers_constatnts.dart';
 
@@ -29,9 +30,7 @@ class _CustomerSignup extends State<CustomerSignup> {
       ],
       child: Scaffold(
         backgroundColor: Color.fromARGB(232, 255, 255, 255),
-        body: PixelPerfect(
-          // assetPath: 'assets/images/pixel_customer-signup.jpg',
-          child: CurlyBackgroundPage(
+        body:CurlyBackgroundPage(
             backgroundImage: Container(
               child: Column(
                 children: [
@@ -129,7 +128,7 @@ class _CustomerSignup extends State<CustomerSignup> {
                         } else if (state
                             is CustomerSignupLogInButtonClickedEvent) {
                           GoRouter.of(context).pushNamed(
-                              CustomerAppRouteConstant.customerSignin);
+                              LandingAppRouteConstant.customerSignin);
                         }
                       },
                       builder: (context, state) {
@@ -315,7 +314,7 @@ class _CustomerSignup extends State<CustomerSignup> {
                                         CustomerSignupSignupButtonClickedEvent());
 
                                         GoRouter.of(context).go(
-                                          CustomerAppRouteConstant
+                                          LandingAppRouteConstant
                                               .customerSignin,
                                         );
                                   },
@@ -365,7 +364,7 @@ class _CustomerSignup extends State<CustomerSignup> {
                                             .add(
                                                 CustomerSignupLogInButtonClickedEvent());
                                         GoRouter.of(context).pushNamed(
-                                          CustomerAppRouteConstant
+                                          LandingAppRouteConstant
                                               .customerSignin,
                                         );
                                       },
@@ -392,7 +391,6 @@ class _CustomerSignup extends State<CustomerSignup> {
               ),
             ),
           ),
-        ),
       ),
     );
   }

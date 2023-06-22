@@ -1,40 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
-import '../../../landing/app_route_customers_constatnts.dart';
-import '../bloc/technician_profile_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:raise_up/technician/app_route_constatnts.dart';
+import 'package:intl/intl.dart';
 
-import '../model/technician_profile_history.dart';
+import '../../../landing/app_route_customers_constatnts.dart';
+import '../../app_route_customers_constatnts.dart';
+import '../../customer_service_request/ui/customer_service_request.dart';
+import '../bloc/customer_profile_bloc.dart';
+import '../model/customer_profile_history.dart';
 
-class TechnicianStProfile extends StatelessWidget {
-  const TechnicianStProfile({super.key});
+class CustomerStProfile extends StatelessWidget {
+  const CustomerStProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TechnicianProfileBloc(),
-      child: TechnicianProfile(),
+      create: (context) => CustomerProfileBloc(),
+      child: CustomerProfile(),
     );
   }
 }
 
-class TechnicianProfile extends StatefulWidget {
-  const TechnicianProfile({Key? key});
+class CustomerProfile extends StatefulWidget {
+  const CustomerProfile({Key? key});
 
   @override
-  State<TechnicianProfile> createState() => _TechnicianProfileState();
+  State<CustomerProfile> createState() => _CustomerProfileState();
 }
 
-class _TechnicianProfileState extends State<TechnicianProfile> {
+class _CustomerProfileState extends State<CustomerProfile> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<TechnicianProfileBloc>(context)
-        .add(TechnicianHistoryInitialEvent());
-    BlocProvider.of<TechnicianProfileBloc>(context)
-    .add(TechnicianHistoryInitialNameEvent());
+    BlocProvider.of<CustomerProfileBloc>(context)
+        .add(CustomerHistoryInitialEvent());
+    BlocProvider.of<CustomerProfileBloc>(context)
+    .add(CustomerHistoryInitialNameEvent());
   }
 
   @override
@@ -43,12 +44,13 @@ class _TechnicianProfileState extends State<TechnicianProfile> {
         body: Column(children: [
       Container(
         color:
-            Color.fromARGB(255, 117, 185, 198), // Set background color to green
+            Color.fromRGBO(251, 165, 46, 1), // Set background color to green
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.all(70),
         child: Column(
           children: [
             CircleAvatar(
+              backgroundColor:Color.fromARGB(255, 172, 132, 14),
               radius: 60,
               child: Icon(
                 Icons.person,
@@ -56,13 +58,13 @@ class _TechnicianProfileState extends State<TechnicianProfile> {
               ),
             ),
             SizedBox(height: 10),
-            BlocConsumer<TechnicianProfileBloc, TechnicianProfileState>(
+            BlocConsumer<CustomerProfileBloc, CustomerProfileState>(
               listener: (context, state) {
                 // TODO: implement listener
               },
               builder: (context, state) {
                 // print(state);
-                if (state is TechnicianProfileNameLoadedState){
+                if (state is CustomerProfileNameLoadedState){
                   return Text(
                   state.profileName,
                   style: TextStyle(
@@ -94,25 +96,25 @@ class _TechnicianProfileState extends State<TechnicianProfile> {
           ),
         ],
       ),
-      BlocConsumer<TechnicianProfileBloc, TechnicianProfileState>(
+      BlocConsumer<CustomerProfileBloc, CustomerProfileState>(
         listener: (context, state) {
           // TODO: implement listener
         },
         builder: (context, state) {
           return Column(
             children: [
-              BlocConsumer<TechnicianProfileBloc, TechnicianProfileState>(
+              BlocConsumer<CustomerProfileBloc, CustomerProfileState>(
                 listener: (context, state) {
                   // TODO: implement listener
                 },
                 builder: (context, state) {
-                  if (state is TechnicianProfileInitialState) {
-                    List<ProfileHistory> appointmentHistory = state.history;
+                  if (state is CustomerProfileInitialState) {
+                    List<CustomerProfileHistory> appointmentHistory = state.history;
                     return Container(
                         child: ListView.builder(
                       itemCount: appointmentHistory.length,
                       itemBuilder: (context, index) {
-                        ProfileHistory contactInfo=appointmentHistory[index];
+                        CustomerProfileHistory contactInfo=appointmentHistory[index];
                         return SingleChildScrollView(
                           child: Container(
                             decoration: BoxDecoration(
@@ -181,7 +183,7 @@ class _TechnicianProfileState extends State<TechnicianProfile> {
                       child: Container(
                           child: Text("No History",
                               style: TextStyle(
-                                  color: Color.fromARGB(70, 20, 165, 170),
+                                  color: Color.fromRGBO(251, 166, 46, 0.692),
                                   fontSize: 35,
                                   fontWeight: FontWeight.bold))),
                     );
@@ -203,7 +205,7 @@ class _TechnicianProfileState extends State<TechnicianProfile> {
             icon: Icon(Icons.home),
             onPressed: () {
               GoRouter.of(context).pushNamed(
-                LandingAppRouteConstant.technicianServiceRequest,
+                LandingAppRouteConstant.customerServiceRequest,
               );
             },
           ),
@@ -211,7 +213,7 @@ class _TechnicianProfileState extends State<TechnicianProfile> {
             icon: Icon(Icons.build),
             onPressed: () {
               GoRouter.of(context).pushNamed(
-                LandingAppRouteConstant.technicianAppointments,
+                LandingAppRouteConstant.customerAppointment,
               );
             },
           ),
